@@ -1,1 +1,76 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+$pokemon-base: (
+  50: #f7697e,
+  100: #f6556e,
+  200: #f5425d,
+  300: #f42a48,
+  400: #f31233,
+  500: #d90c2c,
+  600: #c70a27,
+  700: #770a1d,
+  800: #670919,
+  900: #390c13,
+  A100: #f6556e,
+  A200: #f42a48,
+  A400: #d90c2c,
+  A700: #770a1d,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: rgba(black, 0.87),
+  ),
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$angular-pokemon-pokedex-primary: mat.define-palette($pokemon-base);
+$angular-pokemon-pokedex-accent: mat.define-palette($pokemon-base, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$angular-pokemon-pokedex-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$angular-pokemon-pokedex-theme: mat.define-light-theme((
+  color: (
+    primary: $angular-pokemon-pokedex-primary,
+    accent: $angular-pokemon-pokedex-accent,
+    warn: $angular-pokemon-pokedex-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($angular-pokemon-pokedex-theme);
+
 /* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

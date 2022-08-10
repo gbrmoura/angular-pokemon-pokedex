@@ -1,0 +1,30 @@
+.breadcrumb {
+  display: flex;
+  background: none;
+  font-size: 0.8em;
+  margin: 0;
+
+  a, span {
+    color: darkgrey;
+    text-decoration: none;
+  }
+
+  a:hover, span:hover {
+    color: dimgrey;
+    text-decoration: none;
+  }
+
+  li, mat-icon {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    margin: 5px;
+    height: 34px;
+  }
+
+  span mat-icon {
+    width: 10px;
+    margin-left: 15px;
+    font-size: 0.5rem;
+  }
+}

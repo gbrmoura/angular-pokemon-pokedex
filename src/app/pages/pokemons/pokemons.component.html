@@ -1,0 +1,11 @@
+
+<div class="container">
+  <div class="search-wrapper">
+
+  </div>
+  <div class="pokemons-wrapper">
+    <div class="pokemon" *ngFor="let pokemon of pokemons">
+      <app-pokemon-card [id]="pokemon.name"></app-pokemon-card>
+    </div>
+  </div>
+</div>
