@@ -24,10 +24,6 @@ export class DashboardComponent implements OnInit {
       {
         name: 'Pokemons',
         link: '/dashboard/pokemons',
-        pokebol: {
-          color1: '#ff3534',
-          color2: '#ffffff'
-        }
       }
     ];
   }

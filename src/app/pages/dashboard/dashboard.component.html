@@ -1,7 +1,7 @@
 <div class="container">
   <div class="message-wrapper">
     <h1 class="title">Welcome Pokemon Trainer,</h1>
-    <h3 class="sub-title">I see you are looking for information, so look at our services</h3>
+    <h3 class="sub-title">I see you are looking for information, take a look at our services</h3>
   </div>
 
   <div class="data-wrapper">
@@ -14,11 +14,7 @@
   <div class="services-wrapper">
 
     <mat-card *ngFor="let service of services" class="pokebol" routerLink="{{service.link}}">
-      <div style="background-color: {{service.pokebol.color1}};" class="pokebol-up"></div>
-      <div class="pokebol-middle">
-        <h3>{{service.name}}</h3>
-      </div>
-      <div style="background-color: {{service.pokebol.color2}};" class="pokebol-down"></div>
+      <h1>{{service.name}}</h1>
     </mat-card>
 
   </div>
