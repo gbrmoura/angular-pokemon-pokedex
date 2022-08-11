@@ -1,0 +1,14 @@
+.loader-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba($color: #000000, $alpha: 0.8);
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+.spinner {
+  top: 50%;
+  left: 50%;
+}

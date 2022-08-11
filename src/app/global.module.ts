@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
@@ -19,6 +19,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatBadgeModule } from '@angular/material/badge'
+import { MatProgressBarModule } from '@angular/material/progress-bar'
+
 import { HttpService } from './services';
 import { PokemonService } from './services/pokemon.service';
 
@@ -48,6 +50,7 @@ import { PokemonService } from './services/pokemon.service';
     MatGridListModule,
     MatSnackBarModule,
     MatBadgeModule,
+    MatProgressBarModule,
 
   ],
   exports: [
@@ -68,6 +71,7 @@ import { PokemonService } from './services/pokemon.service';
     MatGridListModule,
     MatSnackBarModule,
     MatBadgeModule,
+    MatProgressBarModule,
 
   ],
   providers: [

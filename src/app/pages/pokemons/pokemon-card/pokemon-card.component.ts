@@ -26,9 +26,7 @@ export class PokemonCardComponent implements OnInit {
       tap((pokemon) => this.pokemon = pokemon),
       switchMap((pokemon) => this.http.getPokemonForm(this.id as string)),
       tap((form) => this.form = form)
-    ).subscribe(
-      _ => console.log('')
-    )
+    ).subscribe()
   }
 
 }

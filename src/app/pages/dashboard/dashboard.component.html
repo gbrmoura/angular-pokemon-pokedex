@@ -1,2 +1,26 @@
+<div class="container">
+  <div class="message-wrapper">
+    <h1 class="title">Welcome Pokemon Trainer,</h1>
+    <h3 class="sub-title">I see you are looking for information, so look at our services</h3>
+  </div>
 
-<mat-button routerLink="/dashboard/pokemons">Pokemons</mat-button>
+  <div class="data-wrapper">
+    <!-- card de gerações -->
+    <!-- card de pokemons  -->
+    <!-- card de items -->
+    <!-- card de abilidades -->
+  </div>
+
+  <div class="services-wrapper">
+
+    <mat-card *ngFor="let service of services" class="pokebol" routerLink="{{service.link}}">
+      <div style="background-color: {{service.pokebol.color1}};" class="pokebol-up"></div>
+      <div class="pokebol-middle">
+        <h3>{{service.name}}</h3>
+      </div>
+      <div style="background-color: {{service.pokebol.color2}};" class="pokebol-down"></div>
+    </mat-card>
+
+  </div>
+
+</div>

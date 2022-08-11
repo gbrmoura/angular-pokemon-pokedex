@@ -4,16 +4,18 @@ import { PokemonsComponent } from './pokemons.component';
 import { GlobalModule } from 'src/app/global.module';
 import { PokemonsRoutingModule } from './pokemons-routing.module';
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
+import { LoaderModule } from 'src/app/components/loader/loader.module';
 
 @NgModule({
   declarations: [
     PokemonsComponent,
-    PokemonCardComponent
+    PokemonCardComponent,
   ],
   imports: [
     CommonModule,
     PokemonsRoutingModule,
-    GlobalModule
+    GlobalModule,
+    LoaderModule,
   ]
 })
 export class PokemonsModule { }

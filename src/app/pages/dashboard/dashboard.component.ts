@@ -8,20 +8,28 @@ import { HttpService } from 'src/app/services';
 })
 export class DashboardComponent implements OnInit {
 
-  pokemons: any[] = [];
+  services: any[] = [];
 
   constructor(
     private htpp: HttpService
   ) { }
 
   ngOnInit(): void {
-    this.getPokemons();
+    this.services = this.getServices();
   }
 
-  getPokemons(): void {
-    this.htpp.getPokemons(1, 0, '').subscribe(
-      (data) => this.pokemons = data.results
-    )
+
+  getServices(): any[] {
+    return [
+      {
+        name: 'Pokemons',
+        link: '/dashboard/pokemons',
+        pokebol: {
+          color1: '#ff3534',
+          color2: '#ffffff'
+        }
+      }
+    ];
   }
 
 }
