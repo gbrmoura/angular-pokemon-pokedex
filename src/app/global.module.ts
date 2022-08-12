@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -23,10 +22,15 @@ import { MatProgressBarModule } from '@angular/material/progress-bar'
 
 import { HttpService } from './services';
 import { PokemonService } from './services/pokemon.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
   imports: [
+
+    // Forms
+    FormsModule,
+
     // Angular
     CommonModule,
 
@@ -54,6 +58,8 @@ import { PokemonService } from './services/pokemon.service';
 
   ],
   exports: [
+    // Forms
+    FormsModule,
 
     // Angular Material
     MatIconModule,

@@ -1,10 +1,20 @@
-
 <app-loader [isLoading]="isLoading"></app-loader>
 
 <div class="container">
   <div class="search-wrapper">
-    <button>Go Back</button>
+    <mat-form-field appearance="outline" class="input-search">
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        type="text"
+        (keyup)="filterSubject.next()"
+        [(ngModel)]="filterStr"
+        #input
+      />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
   </div>
+
   <div class="pokemons-wrapper">
     <div class="pokemon" *ngFor="let pokemon of pokemons">
       <app-pokemon-card [id]="pokemon.name"></app-pokemon-card>

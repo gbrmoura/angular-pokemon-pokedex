@@ -11,6 +11,7 @@
 
 .pokemon-container .pokemon-img-container {
   display: flex;
+  height: 170px;
   align-items: center;
   justify-content: center;
   vertical-align: middle;
@@ -18,17 +19,29 @@
   padding: 0 5px;
 
   .circle {
+    height: 200px;
     display: flex;
-    margin-bottom: -10px;
-    border-radius: 50px;
+    margin-bottom: -90px;
+    border-radius: 100px;
     background-color: white;
     margin-top: 10px;
+  }
+
+  img {
+    margin-top: -23px;
+    height: 210px;
+    width: 210px;
   }
 
 }
 
 .pokemon-container .pokemon-data-container {
+  display: flex;
+  flex-direction: column;
+  height: 90px;
   padding: 10px;
+  margin-top: 20px;
+  justify-content: space-evenly;
 
   .pokemon-label-container {
     display: flex;
@@ -36,17 +49,25 @@
     justify-content: space-between;
   }
 
+  .pokemon-label-container .name {
+    font-size: 1.8rem;
+    margin: auto 10px;
+  }
+
   .pokemon-label-container .id {
-    font-size: 0.7rem;
+    font-size: 1.2rem;
     padding: 0;
-    margin-left: 3px;
     color: grey;
+    height: 30px;
+    margin-top: 7px;
+    margin-right: 9px;
+    padding-top: 6px;
   }
 
   .pokemon-type-container {
     display: flex;
     flex-direction: row;
-    margin-top: 0.2rem;
+    height: 30px;
   }
 
   .pokemon-type-container .box {
@@ -54,8 +75,15 @@
     text-align: center;
     border-radius: 5px;
     margin: 0 2px;
-    font-size: 0.8rem;
+    font-size: 1.1rem;
     color: white;
     padding: 2px;
+    display: flex;
+
+    span {
+      margin: auto;
+    }
   }
+
+
 }

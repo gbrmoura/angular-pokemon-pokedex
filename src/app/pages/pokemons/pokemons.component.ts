@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { catchError, of, pipe } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpService } from 'src/app/services';
 
 @Component({
@@ -11,6 +11,9 @@ export class PokemonsComponent implements OnInit {
 
   isLoading: boolean = false;
   pokemons: any[] = [];
+
+  public filterSubject: Subject<void> = new Subject();
+  public filterStr = '';
 
   constructor(
     private htpp: HttpService
@@ -34,6 +37,10 @@ export class PokemonsComponent implements OnInit {
         this.isLoading = false;
       }
     )
+  }
+
+  getPokemons2(): void {
+
   }
 
 }
