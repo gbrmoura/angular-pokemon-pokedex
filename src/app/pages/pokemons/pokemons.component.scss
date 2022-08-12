@@ -3,7 +3,14 @@
 
   .search-wrapper {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .input-search {
+      width: 80%;
+      margin: auto;
+    }
+
   }
 
   .pokemons-wrapper {

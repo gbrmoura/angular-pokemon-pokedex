@@ -29,4 +29,8 @@ export class PokemonCardComponent implements OnInit {
     ).subscribe()
   }
 
+  formatPokemonName(pokemon: string): string {
+    return pokemon.replace(/-/g, ' ').replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));;
+  }
+
 }

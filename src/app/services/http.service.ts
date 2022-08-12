@@ -35,7 +35,7 @@ export class HttpService {
     );
   }
 
-  public getPokemons(limit: number, offset: number, search: string): Observable<any> {
+  public getPokemons(limit: number, offset: number): Observable<any> {
     return this.http.get<any>(`${environment.url}pokemon`, {
       params: new HttpParams()
         .set('limit', limit)
