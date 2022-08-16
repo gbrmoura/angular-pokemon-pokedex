@@ -34,17 +34,21 @@ export class BreadCrumbsComponent implements OnInit {
 
     return urls?.map<IBreadCrumb>((rec, index )=>  {
 
-      let label: string = rec.charAt(0).toUpperCase() + rec.slice(1);
+      let label: string = this.formatPokemonName(rec);
       let url: string = urls.filter((u, i)=> i <= index).join('/');
 
       if (rec.startsWith(':') && !!router.snapshot) {
         const paramName = rec.split(':')[1];
         url = url?.replace(rec as string, route?.snapshot.params[paramName as string]) as string;
         label = route?.snapshot.params[paramName as string];
-        label = label.charAt(0).toUpperCase() + label.slice(1)
+        label = this.formatPokemonName(label);
       }
 
       return { label: label, url: url };
     }) ?? [];
+  }
+
+  formatPokemonName(pokemon: string): string {
+    return pokemon.replace(/-/g, ' ').replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));;
   }
 }
