@@ -20,4 +20,18 @@
       <app-pokemon-card [id]="pokemon.name"></app-pokemon-card>
     </div>
   </div>
+
+  <div class="paginator-wrapper">
+    <div class="paginator">
+      <mat-paginator
+        (page)="handlePageEvent($event)"
+        [pageSizeOptions]="[20, 50, 100]"
+        [length]="length"
+        [pageIndex]="pageIndex"
+        [pageSize]="pageSize"
+        [showFirstLastButtons]="true"
+        aria-label="Select page">
+      </mat-paginator>
+  </div>
+  </div>
 </div>

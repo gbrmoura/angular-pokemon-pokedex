@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { debounceTime, distinctUntilChanged, map, merge, Observable, of, startWith, Subject, Subscription, switchMap } from 'rxjs';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { debounceTime, distinctUntilChanged, map, merge, Observable, of, startWith, Subject, Subscription, switchMap, tap } from 'rxjs';
 import { HttpService } from 'src/app/services';
 
 @Component({
@@ -17,8 +18,11 @@ export class PokemonsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private subscription = new Subscription();
 
-  private pageSize: number = 20;
-  private pageNumber: number = 1;
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+
+  public pageSize: number = 20;
+  public pageIndex: number = 0;
+  public length: number = 0;
 
   constructor(
     private http: HttpService
@@ -32,18 +36,18 @@ export class PokemonsComponent implements OnInit, OnDestroy, AfterViewInit {
     )
 
     const changesEvent$ = merge(filterChange$).pipe(
-      // tap(_ => page.index = 0)
+      tap(() => this.paginator.pageIndex = 0)
     );
 
-    this.subscription = merge(changesEvent$).pipe(
+    this.subscription = merge(changesEvent$, this.paginator.page).pipe(
       startWith({}),
       switchMap(() => this.http.getPokemons(10000, 0).pipe(
         map((data) => !data.results ? [] : data.results),
       )),
       switchMap((results) => {
-        return of(results
-          .filter((result: any) => String(result.name).toLowerCase().replace('-', ' ').includes(this.filterStr.toLowerCase()))
-          .slice((this.pageNumber - 1) * this.pageSize, this.pageNumber * this.pageSize)
+        const filterRes = this.filterPokemon(this.filterStr, results);
+        this.length = filterRes.length;
+        return of(filterRes.slice(this.pageIndex * this.pageSize, (this.pageIndex + 1) * this.pageSize)
         );
       })
     ).subscribe(
@@ -60,6 +64,16 @@ export class PokemonsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.isLoading = true;
+  }
+
+  handlePageEvent(event: PageEvent): void {
+    this.length = event.length;
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
+  }
+
+  filterPokemon(search: string, pokemons: any[]): any[] {
+    return pokemons.filter((result: any) => String(result.name).toLowerCase().replace('-', ' ').includes(search.toLowerCase()))
   }
 
 }

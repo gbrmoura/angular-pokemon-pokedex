@@ -1,11 +1,24 @@
 <div class="container">
-  <mat-toolbar color="primary" class="header">
-    <a routerLink="/dashboard">
-      <img src="/assets/pokedex-icon.png">
-    </a>
-  </mat-toolbar>
-  <div class="body">
-    <app-bread-crumbs></app-bread-crumbs>
-    <router-outlet></router-outlet>
+
+  <div class="header-wrapper">
+    <mat-toolbar color="primary" class="header">
+      <a routerLink="/pokemons">
+        <img src="/assets/pokedex-icon.png">
+      </a>
+    </mat-toolbar>
   </div>
+
+  <div class="body-wrapper">
+    <div class="body">
+      <app-bread-crumbs></app-bread-crumbs>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <div class="footer-wrapper">
+    <footer color="primary" class="footer">
+      <div> © 2022 Copyright </div>
+    </footer>
+  </div>
+
 </div>

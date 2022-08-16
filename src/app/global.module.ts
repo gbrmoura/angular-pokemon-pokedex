@@ -17,8 +17,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatBadgeModule } from '@angular/material/badge'
-import { MatProgressBarModule } from '@angular/material/progress-bar'
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { HttpService } from './services';
 import { PokemonService } from './services/pokemon.service';
@@ -55,6 +56,7 @@ import { FormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatBadgeModule,
     MatProgressBarModule,
+    MatPaginatorModule,
 
   ],
   exports: [
@@ -78,6 +80,7 @@ import { FormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatBadgeModule,
     MatProgressBarModule,
+    MatPaginatorModule,
 
   ],
   providers: [
