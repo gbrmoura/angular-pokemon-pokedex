@@ -1,4 +1,7 @@
 .container {
-  margin: 0.5rem 2rem;
+  display: flex;
+}
 
+app-pokemon-image-card {
+  width: 100%;
 }

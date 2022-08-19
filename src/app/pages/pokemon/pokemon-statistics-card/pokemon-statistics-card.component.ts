@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { HttpService } from 'src/app/services';
 
 @Component({
   selector: 'app-pokemon-statistics-card',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokemonStatisticsCardComponent implements OnInit {
 
-  constructor() { }
+  @Input() stats: any = {};
+
+  constructor(
+    private http: HttpService
+  ) { }
 
   ngOnInit(): void {
+    
   }
 
 }

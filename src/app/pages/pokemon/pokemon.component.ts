@@ -12,7 +12,7 @@ export class PokemonComponent implements OnInit {
 
   isLoading: boolean = false;
 
-  pokemon: any = {};
+  pokemon: any;
 
   constructor(
     private route: ActivatedRoute,

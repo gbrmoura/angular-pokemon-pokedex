@@ -1,1 +1,51 @@
-<p>pokemon-image-card works!</p>
+<div *ngIf="pokemon && form">
+  <mat-card class="pokemon-container">
+    
+    <div class="pokemon-img-container" [ngStyle]="{'background-color': poke.getPokemonTypeColor(pokemon.types[0].type.name)}">
+      <div class="circle" *ngFor="let image of images; let i=index" 
+        [ngClass]="{ 'image-active': selectedIndex === i }">
+        <img src="{{ image.src }}" alt="{{ image.alt }}" />
+      </div>
+      <div class="circle-dot-container">
+          <span *ngFor="let dot of images; let i=index" 
+            [ngClass]="{'active': selectedIndex === i}"
+            (click)="selectImage(i)"
+            class="dot"> 
+          </span>
+      </div>
+      <div class="btn-circle btn-prev">
+        <mat-icon aria-hidden="false" 
+          aria-label="" 
+          fontIcon="chevron_left" 
+          class="icon-circle icon-prev"
+          (click)="onPrevClick()"></mat-icon>
+      </div>
+      <div class="btn-circle btn-next">
+        <mat-icon aria-hidden="false" 
+          aria-label="" 
+          fontIcon="chevron_right" 
+          class="icon-circle icon-next"
+          (click)="onNextClick()"></mat-icon>
+      </div>
+    </div>
+
+    <div class="pokemon-data-container">
+      
+      <div class="pokemon-label-container">
+        <span class="name">{{ formatPokemonName(pokemon.name) }}</span>
+        <span class="id">#{{ pokemon.id | number: "3." }}</span>
+      </div>
+
+      <div class="pokemon-type-container">
+        <div class="box" *ngFor="let type of pokemon.types" [ngStyle]="{'background-color': poke.getPokemonTypeColor(type.type.name)}">
+          <span>
+            {{
+              type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)
+            }}
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </mat-card>
+</div>

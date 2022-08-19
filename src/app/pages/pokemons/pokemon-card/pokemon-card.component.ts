@@ -24,7 +24,7 @@ export class PokemonCardComponent implements OnInit {
   ngOnInit(): void {
     this.http.getPokemon(this.id as string).pipe(
       tap((pokemon) => this.pokemon = pokemon),
-      switchMap((pokemon) => this.http.getPokemonForm(this.id as string)),
+      switchMap((pokemon) => this.http.getPokemonForm(pokemon.forms[0].name as string)),
       tap((form) => this.form = form)
     ).subscribe()
   }
