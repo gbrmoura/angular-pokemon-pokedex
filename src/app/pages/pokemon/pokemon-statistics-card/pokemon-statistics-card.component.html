@@ -1,1 +1,22 @@
-<p>pokemon-statistics-card works!</p>
+<div *ngIf="pokemon">
+  <mat-card class="statistics-container"> 
+    
+    <h2>Base Stats</h2>
+    
+    <!-- list -->
+    <div>
+      <table>
+        <body>
+          <tr *ngFor="let stat of stats">
+            <td><h5>{{stat.name}}</h5></td>
+            <td><span>{{stat.base_stats}}</span></td>
+            <td>progress bar ...</td>
+            <td>min stat</td>
+            <td>max stat</td>
+          </tr>
+        </body>
+      </table>
+    </div>
+
+  </mat-card>
+</div>

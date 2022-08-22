@@ -10,8 +10,6 @@ export class PokemonImageCardComponent implements OnInit {
 
   @Input() pokemon: any;
 
-  form: any;
-
   images: any[] = [];
   selectedIndex: number = 0;
 
@@ -21,24 +19,17 @@ export class PokemonImageCardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.http.getPokemonForm(this.pokemon.forms[0].name as string).subscribe(
-      (form) => {
-        this.form = form
-        
-        if (form.sprites.front_default) {
-          this.images.push({src: form.sprites.front_default, alt: ''});
-        }
+    if (this.pokemon.sprites.front_default) {
+      this.images.push({src: this.pokemon.sprites.front_default, alt: ''});
+    }
 
-        if (form.sprites.front_shiny) {
-          this.images.push({src: form.sprites.front_shiny, alt: ''});
-        }
-
-      }
-    )
+    if (this.pokemon.sprites.front_shiny) {
+      this.images.push({src: this.pokemon.sprites.front_shiny, alt: ''});
+    }
   }
 
   formatPokemonName(pokemon: string): string {
-    return pokemon.replace(/-/g, ' ').replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));;
+    return pokemon.replace(/-/g, ' ').replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));
   }
   
   selectImage(i: number): void {

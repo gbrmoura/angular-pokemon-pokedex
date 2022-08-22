@@ -1,10 +1,10 @@
-<div *ngIf="pokemon && form" >
+<div *ngIf="pokemon" >
 
   <mat-card class="pokemon-container" routerLink="/pokemons/{{pokemon.name}}">
 
       <div class="pokemon-img-container" [ngStyle]="{'background-color': poke.getPokemonTypeColor(pokemon.types[0].type.name)}">
         <div class="circle">
-          <img src="{{form.sprites.front_default}}" alt="">
+          <img src="{{pokemon.sprites.front_default}}" alt="">
         </div>
       </div>
 
