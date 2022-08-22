@@ -1,1 +1,1 @@
-export * from './IBreadCrumb'
+export * from './bread-crumb.interface'

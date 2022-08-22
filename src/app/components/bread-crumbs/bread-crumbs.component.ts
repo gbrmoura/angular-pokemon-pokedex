@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { distinctUntilChanged } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { IBreadCrumb } from '../../interfaces';
+import { BreadCrumb } from '../../interfaces';
 
 @Component({
   selector: 'app-bread-crumbs',
@@ -11,7 +11,7 @@ import { IBreadCrumb } from '../../interfaces';
 })
 export class BreadCrumbsComponent implements OnInit {
 
-  public breadcrumbs: IBreadCrumb[] = [];
+  public breadcrumbs: BreadCrumb[] = [];
 
   constructor(
     private route: Router,
@@ -27,12 +27,12 @@ export class BreadCrumbsComponent implements OnInit {
     })
   }
 
-  buildBreadCrumb(router: ActivatedRoute): IBreadCrumb[] {
+  buildBreadCrumb(router: ActivatedRoute): BreadCrumb[] {
     const route = router.firstChild;
     const path = route?.routeConfig && route.routeConfig.data ? route.routeConfig.path : '';
     const urls = path?.split('/').filter(rec => rec);
 
-    return urls?.map<IBreadCrumb>((rec, index )=>  {
+    return urls?.map<BreadCrumb>((rec, index )=>  {
 
       let label: string = this.formatPokemonName(rec);
       let url: string = urls.filter((u, i)=> i <= index).join('/');

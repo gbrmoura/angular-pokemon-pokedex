@@ -1,4 +1,4 @@
-export interface IBreadCrumb {
+export interface BreadCrumb {
   label: string;
   url: string;
 }
