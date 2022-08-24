@@ -5,6 +5,7 @@ import { GlobalModule } from 'src/app/global.module';
 import { PokemonsRoutingModule } from './pokemons-routing.module';
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { LoaderModule } from 'src/app/components/loader/loader.module';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { LoaderModule } from 'src/app/components/loader/loader.module';
     PokemonsRoutingModule,
     GlobalModule,
     LoaderModule,
+    PipesModule
   ]
 })
 export class PokemonsModule { }

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { of, switchMap, tap } from 'rxjs';
-import { HttpService } from 'src/app/services';
+import { HttpService, PokemonFormattingService } from 'src/app/services';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
@@ -17,17 +17,14 @@ export class PokemonCardComponent implements OnInit {
 
   constructor(
     private http: HttpService,
-    public poke: PokemonService
+    public poke: PokemonService,
+    public format: PokemonFormattingService
   ) { }
 
   ngOnInit(): void {
     this.http.getPokemon(this.id as string).pipe(
       tap((pokemon) => this.pokemon = pokemon)
     ).subscribe()
-  }
-
-  formatPokemonName(pokemon: string): string {
-    return pokemon.replace(/-/g, ' ').replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));;
   }
 
 }

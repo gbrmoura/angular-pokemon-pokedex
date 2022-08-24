@@ -27,10 +27,6 @@ export class PokemonImageCardComponent implements OnInit {
       this.images.push({src: this.pokemon.sprites.front_shiny, alt: ''});
     }
   }
-
-  formatPokemonName(pokemon: string): string {
-    return pokemon.replace(/-/g, ' ').replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));
-  }
   
   selectImage(i: number): void {
     this.selectedIndex = i;

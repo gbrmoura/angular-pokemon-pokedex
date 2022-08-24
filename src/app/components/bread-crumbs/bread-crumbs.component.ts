@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { distinctUntilChanged } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { PokemonFormattingService } from 'src/app/services';
 import { BreadCrumb } from '../../interfaces';
 
 @Component({
@@ -15,7 +16,8 @@ export class BreadCrumbsComponent implements OnInit {
 
   constructor(
     private route: Router,
-    private activatedRoute: ActivatedRoute
+    private format: PokemonFormattingService,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -34,21 +36,17 @@ export class BreadCrumbsComponent implements OnInit {
 
     return urls?.map<BreadCrumb>((rec, index )=>  {
 
-      let label: string = this.formatPokemonName(rec);
+      let label: string = this.format.getFormattedPokemonName(rec);
       let url: string = urls.filter((u, i)=> i <= index).join('/');
 
       if (rec.startsWith(':') && !!router.snapshot) {
         const paramName = rec.split(':')[1];
         url = url?.replace(rec as string, route?.snapshot.params[paramName as string]) as string;
         label = route?.snapshot.params[paramName as string];
-        label = this.formatPokemonName(label);
+        label = this.format.getFormattedPokemonName(label);
       }
 
       return { label: label, url: url };
     }) ?? [];
-  }
-
-  formatPokemonName(pokemon: string): string {
-    return pokemon.replace(/-/g, ' ').replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));;
   }
 }

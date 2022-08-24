@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BreadCrumbsComponent } from './components/bread-crumbs/bread-crumbs.component';
 import { GlobalModule } from './global.module';
+import { CapitalizeAlTextPipe } from './pipes';
 
 @NgModule({
   declarations: [

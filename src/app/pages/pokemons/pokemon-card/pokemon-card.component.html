@@ -11,7 +11,7 @@
       <div class="pokemon-data-container">
 
         <div class="pokemon-label-container">
-          <span class="name">{{formatPokemonName(pokemon.name)}}</span>
+          <span class="name">{{ pokemon.name | capitalizeAlText }}</span>
           <span class="id">#{{pokemon.id | number: '3.'}}</span>
         </div>
 

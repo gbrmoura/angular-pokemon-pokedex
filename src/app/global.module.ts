@@ -24,6 +24,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpService } from './services';
 import { PokemonService } from './services/pokemon.service';
 import { FormsModule } from '@angular/forms';
+import { CapitalizeAlTextPipe } from './pipes';
 
 @NgModule({
   declarations: [],
@@ -81,7 +82,7 @@ import { FormsModule } from '@angular/forms';
     MatBadgeModule,
     MatProgressBarModule,
     MatPaginatorModule,
-
+    
   ],
   providers: [
     HttpService,
