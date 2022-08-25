@@ -1,9 +1,63 @@
 .statistics-container {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   position: relative;
-  max-width: 800px;
+  max-width: 500px;
   min-width: 250px;
   margin: auto;
-  padding: 10px;
+  padding: 0.5rem 1rem;
   border-radius: 5px;
+}
+
+.stats-table {
+  width: 100%;
+
+  .stats-table-row {
+    width: 100%;
+    height: 30px;
+    font-size: 1rem;
+    margin: 10px;
+    vertical-align: middle;
+
+    .name {
+      min-width: 60px;
+      width: 80px;
+      font-weight: 500;
+    }
+
+    .base-stats {
+      min-width: 25px;
+      text-align: end;
+      padding-right: 15px;
+    }
+
+    .bar {
+      width: 100%;
+    }
+
+    .statbar {
+      border: 1px solid grey;
+      border-radius: 3px;
+      height: 20px !important;
+      padding: 1px;
+      background-color: rgba(128, 128, 128, 0.15);
+
+      .data {
+        background-color: #48a4e5;
+        height: 20px;
+        border-radius: 1px 0 0 1px;
+      }
+    }
+    
+    .min-max {
+      text-align: center;
+    }
+
+    .footer-stats {
+      min-width: 50px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+  }
+
 }

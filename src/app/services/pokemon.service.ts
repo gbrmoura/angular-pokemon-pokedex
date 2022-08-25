@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { transformMenu } from '@angular/material/menu';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +8,12 @@ export class PokemonService {
 
   constructor() {}
 
-  getPokemonTypeColor(type: string): string {
+  /**
+   * It should return the pokemon type hexa color
+   * @param {string} type: the pokemon type 
+   * @returns {string} hexadecimal color
+   */
+  public getPokemonTypeColor(type: string): string {
     switch (type) {
       case 'normal':
         return '#a8a878';
@@ -49,4 +55,22 @@ export class PokemonService {
         return '#EB5757';
     }
   }
+
+  /**
+   * Calcule the hp stat of pokemon
+   * @param {number} base the base stat 
+   * @param {number} level the level of pokemon 
+   * @param {number} iv the IV's of pokemon
+   * @param {number} ev the EV's of pokemon
+   * @returns the value of the stat
+   */
+  public getPokemonHPStat(base: number, level: number, iv: number = 0, ev: number = 0): number {
+    return Math.floor(0.01 * (2 * base + iv + Math.floor(0.25 * ev)) * level) + level + 10;
+  }
+
+
+  public getPokemonOthersStats(nature: boolean, base: number, level: number, iv: number = 0, ev: number = 0): number {
+    return Math.floor(((((2 * base + iv + Math.floor(ev * 0.25)) * level) / 100) + 5) * (nature ? 1.1 : 0.9));
+  }
+
 }

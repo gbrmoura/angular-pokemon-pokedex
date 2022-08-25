@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { HttpService } from 'src/app/services';
+import { HttpService, PokemonService } from 'src/app/services';
 
 @Component({
   selector: 'app-pokemon-statistics-card',
@@ -11,16 +11,22 @@ export class PokemonStatisticsCardComponent implements OnInit {
   @Input() pokemon: any;
 
   stats: any[] = [];
+  total: number = 0;
 
   constructor(
-    private http: HttpService
+    private http: HttpService,
+    public poke: PokemonService
   ) { }
 
   ngOnInit(): void {
+    this.total = 0;
     this.stats = this.pokemon.stats.map((stat: any) => {
+      this.total += Number(stat.base_stat);
       return {
         name: this.getFormatStats(stat.stat.name),
-        base_stats: stat.base_stat
+        base_stats: stat.base_stat,
+        min: (stat.stat.name == 'hp') ? this.poke.getPokemonHPStat(stat.base_stat, 100)  : this.poke.getPokemonOthersStats(false, stat.base_stat, 100),
+        max: (stat.stat.name == 'hp') ? this.poke.getPokemonHPStat(stat.base_stat, 100, 31, 255)  : this.poke.getPokemonOthersStats(true, stat.base_stat, 100, 31, 255),
       }
     });
   }
@@ -35,5 +41,7 @@ export class PokemonStatisticsCardComponent implements OnInit {
         return name.replace(/-/g, ' ').replace(/\w\S*/g, (w: any) => (w.replace(/^\w/, (c: any) => c.toUpperCase())));
     }
   }
+
+  
 
 }
