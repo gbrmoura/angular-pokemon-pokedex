@@ -35,6 +35,12 @@ export class HttpService {
     );
   }
 
+  public getPokemonSpecies(pokemon: string): Observable<any> {
+    return this.http.get<any>(`${environment.url}pokemon-species/${pokemon}`).pipe(
+      catchError(this.handleError('getPokemonSpecies'))
+    )
+  }
+
   public getPokemons(limit: number, offset: number): Observable<any> {
     return this.http.get<any>(`${environment.url}pokemon`, {
       params: new HttpParams()

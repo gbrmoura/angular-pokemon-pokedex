@@ -1,13 +1,48 @@
 .container {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
+  margin-top: 0.5rem;
+  display: grid;
+  grid-template-areas: 
+    "image details"
+    "image statistics"
+    "typechart typechart"
+    "evolution evolution"
+    "forms forms"
+    ;
 }
 
 app-pokemon-image-card {
-  width: 100%;
+  grid-area: image;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1rem;
+}
+
+app-pokemon-details-card {
+  grid-area: details;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+  margin-left: 1rem;
 }
 
 app-pokemon-statistics-card {
-  width: 100%;
+  grid-area: statistics;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 1rem;
+}
+
+app-pokemon-typechart-card {
+  grid-area: typechart;
+  margin-top: 15px;
+}
+
+app-pokemon-evolution-card {
+  grid-area: evolution;
+  margin-top: 15px;
+}
+
+app-pokemon-forms-card {
+  grid-area: forms;
+  margin-top: 15px;
 }

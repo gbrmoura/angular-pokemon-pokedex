@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { catchError, of, tap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { HttpService } from 'src/app/services';
 
 @Component({
@@ -13,6 +13,7 @@ export class PokemonComponent implements OnInit {
   isLoading: boolean = false;
 
   pokemon: any;
+  species: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,8 +23,11 @@ export class PokemonComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     const id = String(this.route.snapshot.paramMap.get('pokemon'));
-    this.http.getPokemon(id as string).subscribe((pokemon) => {
-      this.pokemon = pokemon;
+    this.http.getPokemon(id as string).pipe(
+      tap((pokemon) => this.pokemon = pokemon),
+      switchMap((pokemon) => this.http.getPokemonSpecies(pokemon.species.name)),
+      tap((specie) => this.species = specie),
+    ).subscribe(() => {
       this.isLoading = false;
     }, (error) => {
       this.isLoading = false;

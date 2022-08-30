@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { PokemonFormattingService } from '../services';
 
 @Pipe({
-    name: 'capitalizeAlText'
+    name: 'capitalizeAllText'
 })
 export class CapitalizeAlTextPipe implements PipeTransform {
 
