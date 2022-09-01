@@ -10,3 +10,28 @@
     margin-bottom: 5px;
   }
 }
+
+
+.typechart-wrapper {
+  width: 100%;
+  min-width: 250px;
+  overflow: auto;
+  text-align: center;
+
+  .name {
+    border: solid 1px grey;
+    min-width: 75px;
+    color: white;
+    border-radius: 3px 3px 0 0;
+    height: 30px;
+    font-size: 0.9rem;;
+  }
+
+  .value {
+    border: solid 1px grey;
+    font-size: 0.8rem;
+    height: 25px;
+    border-radius: 0 0 3px 3px;
+  }
+
+}

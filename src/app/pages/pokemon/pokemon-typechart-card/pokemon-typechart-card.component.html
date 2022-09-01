@@ -1,6 +1,21 @@
 <div *ngIf="pokemon">
   <mat-card class="container">
     <h2>Damage Taken</h2>
-    <div></div>
+    <div class="typechart-wrapper">
+      <table>
+        <tbody>
+          <tr>
+            <td class="name" *ngFor="let type of types" [ngStyle]="{'background-color': poke.getPokemonTypeColor(type.name)}">
+              {{ type.name | capitalizeAllText }}
+            </td>
+          </tr>
+          <tr>
+            <td class="value" *ngFor="let dmg of damaged">
+              {{ dmg.damage }} x
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </mat-card>
 </div>

@@ -8,17 +8,11 @@ import { environment } from 'src/environments/environment';
 })
 export class HttpService {
 
-  constructor(
-    private http: HttpClient
-  ) { }
-
-  private log(message: any): void {
-    console.log(`${message}`);
-  }
+  constructor(private http: HttpClient) { }
 
   private handleError<T>(operation = 'operation', result?: T): any {
     return (error: any): Observable<T> => {
-      this.log(`${operation} failed: ${error.message}`);
+      console.error(`${operation} failed: ${error.message}`);
       return of(result as T);
     }
   }
@@ -38,6 +32,18 @@ export class HttpService {
   public getPokemonSpecies(pokemon: string): Observable<any> {
     return this.http.get<any>(`${environment.url}pokemon-species/${pokemon}`).pipe(
       catchError(this.handleError('getPokemonSpecies'))
+    )
+  }
+
+  public getTypes(): Observable<any> {
+    return this.http.get<any>(`${environment.url}type`).pipe(
+      catchError(this.handleError('getTypes'))
+    )
+  }
+
+  public getPokemonTypes(type: string): Observable<any> {
+    return this.http.get<any>(`${environment.url}type/${type}`).pipe(
+      catchError(this.handleError('getPokemonTypes'))
     )
   }
 
