@@ -50,8 +50,14 @@ export class PokemonTypechartCardComponent implements OnInit {
           toArray(), 
           map((damagedTypes: any) => {
             return types.results.map((t: any) => {
-              const filterDamaged = [...damagedTypes[0], ...damagedTypes[1]].filter((e) => e.type == t.name);
-              let x = filterDamaged.length <= 0 ? 1 : filterDamaged.reduce((a, b) => {
+
+              let filterDamaged = damagedTypes[0].filter((e: any) => e.type == t.name);
+              
+              if (damagedTypes.length > 0) {
+                filterDamaged = [...filterDamaged, ...damagedTypes[1]].filter((e) => e.type == t.name)
+              }
+
+              let x = filterDamaged.length <= 0 ? 1 : filterDamaged.reduce((a: any, b: any) => {
                 a.damage *= b.damage;
                 return a;
               }).damage;
@@ -60,7 +66,10 @@ export class PokemonTypechartCardComponent implements OnInit {
             });
           }),
           map((finalDamagedTypes) => {
-            return {types: types.results, damaged: finalDamagedTypes}
+            const finalTypes = types.results.map((e: any) => {
+              return {name: e.name, title: e.name.substr(0, 3)}
+            })
+            return {types: finalTypes, damaged: finalDamagedTypes}
           })
         )
       })
@@ -69,6 +78,23 @@ export class PokemonTypechartCardComponent implements OnInit {
       this.damaged = e.damaged;
     })
 
+  }
+
+  getClassByDamage(damage: number) {
+    switch(damage) {
+      case 0.25:
+        return 'not-realy-effective';
+      case 0.5:
+        return 'not-very-effective';
+      case 0:
+        return 'no-effect';
+      case 2:
+        return 'super-effective';
+      case 4:
+        return 'mega-effective';
+      default:
+        return '';
+    }
   }
 
 }
