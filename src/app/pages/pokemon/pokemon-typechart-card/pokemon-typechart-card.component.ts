@@ -53,7 +53,7 @@ export class PokemonTypechartCardComponent implements OnInit {
 
               let filterDamaged = damagedTypes[0].filter((e: any) => e.type == t.name);
               
-              if (damagedTypes.length > 0) {
+              if (damagedTypes.length >= 2) {
                 filterDamaged = [...filterDamaged, ...damagedTypes[1]].filter((e) => e.type == t.name)
               }
 
