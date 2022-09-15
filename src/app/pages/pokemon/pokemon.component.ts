@@ -14,6 +14,7 @@ export class PokemonComponent implements OnInit {
 
   pokemon: any;
   species: any;
+  forms: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,10 +28,9 @@ export class PokemonComponent implements OnInit {
       tap((pokemon) => this.pokemon = pokemon),
       switchMap((pokemon) => this.http.getPokemonSpecies(pokemon.species.name)),
       tap((specie) => this.species = specie),
-    ).subscribe(() => {
-      this.isLoading = false;
-    }, (error) => {
-      this.isLoading = false;
+    ).subscribe({
+      next: () => this.isLoading = false,
+      error: () => this.isLoading = false,
     });
   }
 

@@ -8,10 +8,19 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PokemonEvolutionCardComponent implements OnInit {
 
   @Input() pokemon: any;
+  @Input() species: any; 
 
   constructor() { }
 
   ngOnInit(): void {
+    // this.getPokemonEvolutionChainId(this.species.evolution_chain.url);
+  
+  }
+
+  private getPokemonEvolutionChainId(url: string): string {
+    const splitedUrl = url.split('pokeapi.co')[1].split('/').filter(r => r !== '');
+    const evolutionChainId = splitedUrl[splitedUrl.length - 1];
+    return evolutionChainId;
   }
 
 }

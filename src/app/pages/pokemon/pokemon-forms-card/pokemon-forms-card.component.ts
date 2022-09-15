@@ -8,10 +8,24 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PokemonFormsCardComponent implements OnInit {
 
   @Input() pokemon: any;
+  @Input() species: any;
   
   constructor() { }
 
   ngOnInit(): void {
+
+  }
+
+  private getPokemonVarieties(species: any): any[] {
+    // todo:
+    if (species && species.varieties) {
+      return species.varieties.map((vtr: any) => {
+
+      }).filter((vtr: any) => vtr !== null)
+    }
+
+
+    return [];
   }
 
 }
