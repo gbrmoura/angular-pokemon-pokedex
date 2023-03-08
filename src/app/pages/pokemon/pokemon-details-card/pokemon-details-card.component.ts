@@ -1,31 +1,41 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { HttpService } from 'src/app/services';
+import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-pokemon-details-card',
   templateUrl: './pokemon-details-card.component.html',
   styleUrls: ['./pokemon-details-card.component.scss']
 })
-export class PokemonDetailsCardComponent implements OnInit {
+export class PokemonDetailsCardComponent implements OnChanges {
 
   @Input() pokemon: any;
   @Input() specie: any;
 
   species: string = '';
-  height: string = ''; 
+  height: string = '';
   weight: string = '';
   abilities: string = '';
 
-  constructor(private http: HttpService) { }
+  constructor() { }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    this.loadPokemonDetails();
+  }
+
+  public loadPokemonDetails(): void {
     const height = String(this.pokemon.height);
     const weight = String(this.pokemon.weight);
-    
+
     // put zero on the begin
     let sliceHeight = this.slice(height, height.length - 1, '.');
     let sliceWeight = this.slice(weight, weight.length - 1, '.');
 
+    if (sliceHeight.indexOf('.') === 0) {
+      sliceHeight = '0' + sliceHeight;
+    }
+
+    if (sliceWeight.indexOf('.') === 0) {
+      sliceWeight = '0' + sliceWeight;
+    }
 
     this.species = this.specie.genera.find((rec: any) => rec.language.name === 'en').genus;
     this.height = `${ sliceHeight } m`;
@@ -35,7 +45,7 @@ export class PokemonDetailsCardComponent implements OnInit {
     }).join(', ');
   }
 
-  
+
   public slice(text: string, position: number, inc: string): string {
     return text.slice(0, position) + inc + text.slice(position);
   }

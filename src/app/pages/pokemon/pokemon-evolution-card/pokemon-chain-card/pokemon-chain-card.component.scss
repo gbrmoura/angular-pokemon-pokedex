@@ -1,0 +1,40 @@
+.pokemon-chain-card {
+
+  .image {
+    display: flex;
+    align-items: center;
+
+    img {
+      height: 80px;
+      width: 80px;
+      border: solid 2px #48a4e5;
+      border-radius: 10px;
+      box-shadow: rgb(0 0 0 / 15%) 0px 2px 4px;
+      background-color: #f7f7f7;
+    }
+  }
+
+  .description {
+    margin: 0px 0px 0px 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .description .title {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  .basic-form {
+    color: cornflowerblue;
+  }
+
+  .pokemon-chain-card-link {
+    padding: 5px;
+    display: flex;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+}

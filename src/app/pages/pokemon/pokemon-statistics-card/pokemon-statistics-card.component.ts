@@ -1,24 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { HttpService, PokemonService } from 'src/app/services';
+import { Component, Input, OnChanges} from '@angular/core';
+import { PokemonService } from 'src/app/services';
 
 @Component({
   selector: 'app-pokemon-statistics-card',
   templateUrl: './pokemon-statistics-card.component.html',
   styleUrls: ['./pokemon-statistics-card.component.scss']
 })
-export class PokemonStatisticsCardComponent implements OnInit {
+export class PokemonStatisticsCardComponent implements OnChanges {
 
   @Input() pokemon: any;
 
   stats: any[] = [];
   total: number = 0;
 
-  constructor(
-    private http: HttpService,
-    public poke: PokemonService
-  ) { }
+  constructor(public poke: PokemonService) { }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    this.loadPokemonStatistics();
+  }
+
+
+  public loadPokemonStatistics(): void {
     this.total = 0;
     this.stats = this.pokemon.stats.map((stat: any) => {
       this.total += Number(stat.base_stat);
@@ -42,6 +44,6 @@ export class PokemonStatisticsCardComponent implements OnInit {
     }
   }
 
-  
+
 
 }

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { HttpService, PokemonFormattingService, PokemonService } from 'src/app/services';
+import { Component, Input, OnChanges } from '@angular/core';
+import { HttpService, PokemonService } from 'src/app/services';
 
 import { tap, concat,  } from 'rxjs';
 import { switchMap, toArray, map } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { switchMap, toArray, map } from 'rxjs/operators';
   templateUrl: './pokemon-typechart-card.component.html',
   styleUrls: ['./pokemon-typechart-card.component.scss']
 })
-export class PokemonTypechartCardComponent implements OnInit {
+export class PokemonTypechartCardComponent implements OnChanges {
 
   @Input() pokemon: any;
 
@@ -19,21 +19,25 @@ export class PokemonTypechartCardComponent implements OnInit {
 
   constructor(private http: HttpService, public poke: PokemonService) { }
 
-  ngOnInit(): void {
-    
+  ngOnChanges(): void {
+    this.loadPokemonTypeChart();
+  }
+
+
+  public loadPokemonTypeChart(): void {
     this.http.getTypes().pipe(
       switchMap((types) => {
         return concat(
           ...this.pokemon.types.map((type: any) => {
             return this.http.getPokemonTypes(type.type.name).pipe(
               map((pokemonType) => {
-                
+
                 const damaged: any[] = []
 
                 pokemonType.damage_relations.double_damage_from.map((db: any) => {
                   damaged.push({type: db.name, damage: 2});
                 })
-                
+
                 pokemonType.damage_relations.half_damage_from.map((hf: any) => {
                   damaged.push({type: hf.name, damage: 0.5});
                 })
@@ -47,12 +51,12 @@ export class PokemonTypechartCardComponent implements OnInit {
             )
           })
         ).pipe(
-          toArray(), 
+          toArray(),
           map((damagedTypes: any) => {
             return types.results.map((t: any) => {
 
               let filterDamaged = damagedTypes[0].filter((e: any) => e.type == t.name);
-              
+
               if (damagedTypes.length >= 2) {
                 filterDamaged = [...filterDamaged, ...damagedTypes[1]].filter((e) => e.type == t.name)
               }
@@ -77,7 +81,6 @@ export class PokemonTypechartCardComponent implements OnInit {
       this.types = e.types;
       this.damaged = e.damaged;
     })
-
   }
 
   getClassByDamage(damage: number) {

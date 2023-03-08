@@ -7,6 +7,54 @@
   width: 1185px;
 
   h2 {
-    margin-bottom: 5px;
+    margin-bottom: 0px;
   }
+
+  .evolution-chain-pokemon {
+    min-height: 120px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .first-evolution-chain-pokemon {
+    display: flex;
+    justify-content: center;
+  }
+
+  .second-evolution-chain-pokemon {
+    margin-left: 3rem;
+
+    .second-chain-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .third-evolution-chain-pokemon {
+    margin-left: 3rem;
+  }
+
+  .no-evolution-chain-pokemon {
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+
+    .span {
+      font-size: 1rem;
+      color: gray;
+    }
+  }
+}
+
+.chain-container {
+  display: flex;
+}
+
+.arrow {
+  margin-right: 3rem;
+  height: 50px;
+  width: 50px;
 }

@@ -9,7 +9,7 @@ export class PokemonFormsCardComponent implements OnInit {
 
   @Input() pokemon: any;
   @Input() species: any;
-  
+
   constructor() { }
 
   ngOnInit(): void {
@@ -18,11 +18,7 @@ export class PokemonFormsCardComponent implements OnInit {
 
   private getPokemonVarieties(species: any): any[] {
     // todo:
-    if (species && species.varieties) {
-      return species.varieties.map((vtr: any) => {
 
-      }).filter((vtr: any) => vtr !== null)
-    }
 
 
     return [];

@@ -11,6 +11,8 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
 import { PokemonDetailsCardComponent } from './pokemon-details-card/pokemon-details-card.component';
 import { PokemonFormsCardComponent } from './pokemon-forms-card/pokemon-forms-card.component';
 import { PokemonTypechartCardComponent } from './pokemon-typechart-card/pokemon-typechart-card.component';
+import { PokemonChainCardComponent } from './pokemon-evolution-card/pokemon-chain-card/pokemon-chain-card.component';
+import { PokemonImageFormCardComponent } from './pokemon-forms-card/pokemon-image-form-card/pokemon-image-form-card.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { PokemonTypechartCardComponent } from './pokemon-typechart-card/pokemon-
     PokemonEvolutionCardComponent,
     PokemonDetailsCardComponent,
     PokemonFormsCardComponent,
-    PokemonTypechartCardComponent
+    PokemonTypechartCardComponent,
+    PokemonChainCardComponent,
+    PokemonImageFormCardComponent,
   ],
   imports: [
     CommonModule,

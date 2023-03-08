@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { HttpService } from 'src/app/services';
 
 @Component({
   selector: 'app-pokemon-evolution-card',
@@ -8,19 +9,29 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PokemonEvolutionCardComponent implements OnInit {
 
   @Input() pokemon: any;
-  @Input() species: any; 
+  @Input() species: any;
 
-  constructor() { }
+  public evolutionChain: any;
+
+  constructor(private http: HttpService) { }
 
   ngOnInit(): void {
-    // this.getPokemonEvolutionChainId(this.species.evolution_chain.url);
-  
+    const evolutionChainId = this.getID(this.species.evolution_chain.url);
+    this.http.getPokemonEvolutionChain(evolutionChainId).subscribe({
+      next: (pokemons) => {
+        this.evolutionChain = pokemons;
+        console.log(pokemons)
+      }
+    });
   }
 
-  private getPokemonEvolutionChainId(url: string): string {
+  public isEvolutionAvailable(): boolean {
+    return (this.evolutionChain.chain.evolves_to.length !== 0);
+  }
+
+  public getID(url: string): string | number {
     const splitedUrl = url.split('pokeapi.co')[1].split('/').filter(r => r !== '');
-    const evolutionChainId = splitedUrl[splitedUrl.length - 1];
-    return evolutionChainId;
+    return splitedUrl[splitedUrl.length - 1];
   }
 
 }

@@ -47,7 +47,7 @@ export class HttpService {
     )
   }
 
-  public getPokemonEvolutionChain(pokemon: string): Observable<any> {
+  public getPokemonEvolutionChain(pokemon: string | number): Observable<any> {
     return this.http.get<any>(`${environment.url}evolution-chain/${pokemon}`).pipe(
       catchError(this.handleError('getPokemonEvolutionChain'))
     )

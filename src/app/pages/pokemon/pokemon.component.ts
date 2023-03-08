@@ -10,18 +10,28 @@ import { HttpService } from 'src/app/services';
 })
 export class PokemonComponent implements OnInit {
 
-  isLoading: boolean = false;
+  public isLoading: boolean = false;
 
-  pokemon: any;
-  species: any;
-  forms: any;
+  public pokemon: any;
+  public species: any;
+  public forms: any;
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpService,
+    private activeRoute: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
+    this.loadPokemonData();
+
+    this.activeRoute.params.subscribe(routeParams => {
+      this.loadPokemonData();
+      this.scrollTop();
+    });
+  }
+
+  public loadPokemonData(): void {
     this.isLoading = true;
     const id = String(this.route.snapshot.paramMap.get('pokemon'));
     this.http.getPokemon(id as string).pipe(
@@ -34,4 +44,9 @@ export class PokemonComponent implements OnInit {
     });
   }
 
+  public scrollTop(): void {
+
+  }
+
 }
+

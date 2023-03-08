@@ -1,24 +1,27 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { HttpService, PokemonService } from 'src/app/services';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { PokemonService } from 'src/app/services';
 
 @Component({
   selector: 'app-pokemon-image-card',
   templateUrl: './pokemon-image-card.component.html',
   styleUrls: ['./pokemon-image-card.component.scss']
 })
-export class PokemonImageCardComponent implements OnInit {
+export class PokemonImageCardComponent implements OnChanges {
 
   @Input() pokemon: any;
 
   images: any[] = [];
   selectedIndex: number = 0;
 
-  constructor(
-    private http: HttpService,
-    public poke: PokemonService
-  ) { }
+  constructor(public poke: PokemonService) { }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    this.loadPokemonImageData();
+  }
+
+  public loadPokemonImageData(): void {
+    this.images = [];
+
     if (this.pokemon.sprites.front_default) {
       this.images.push({src: this.pokemon.sprites.front_default, alt: ''});
     }
@@ -27,7 +30,7 @@ export class PokemonImageCardComponent implements OnInit {
       this.images.push({src: this.pokemon.sprites.front_shiny, alt: ''});
     }
   }
-  
+
   selectImage(i: number): void {
     this.selectedIndex = i;
   }
