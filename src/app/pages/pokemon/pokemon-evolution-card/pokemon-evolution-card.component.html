@@ -11,7 +11,7 @@
 
               <div class="second-chain-wrapper" *ngFor="let pokemon of evolutionChain.chain.evolves_to">
                 <div class="chain-container" >
-                  <img class="arrow">
+                  <img class="arrow" src="/assets/right-arrow.png">
                   <app-pokemon-chain-card
                     [pokemonSpeciesId]="getID(pokemon.species.url)"
                     [pokemonEvolveReason]="pokemon.evolution_details"
@@ -21,7 +21,7 @@
 
                   <div class="third-evolution-chain-pokemon">
                     <div *ngFor="let pokemon2 of pokemon.evolves_to" class="chain-container">
-                      <img class="arrow">
+                      <img class="arrow" src="/assets/right-arrow.png">
                       <app-pokemon-chain-card
                         [pokemonSpeciesId]="getID(pokemon2.species.url)"
                         [pokemonEvolveReason]="pokemon2.evolution_details"

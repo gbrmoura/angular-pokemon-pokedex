@@ -20,6 +20,7 @@
   .first-evolution-chain-pokemon {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   .second-evolution-chain-pokemon {
@@ -51,10 +52,11 @@
 
 .chain-container {
   display: flex;
+  align-items: center;
 }
 
 .arrow {
   margin-right: 3rem;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
 }
