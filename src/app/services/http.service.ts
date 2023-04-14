@@ -17,6 +17,11 @@ export class HttpService {
     }
   }
 
+  public getID(url: string): string | number {
+    const splitedUrl = url.split('pokeapi.co')[1].split('/').filter(r => r !== '');
+    return splitedUrl[splitedUrl.length - 1];
+  }
+
   public getPokemon(pokemon: string): Observable<any> {
     return this.http.get<any>(`${environment.url}pokemon/${pokemon}`).pipe(
       catchError(this.handleError('getPokemon'))

@@ -20,7 +20,6 @@ export class PokemonEvolutionCardComponent implements OnInit {
     this.http.getPokemonEvolutionChain(evolutionChainId).subscribe({
       next: (pokemons) => {
         this.evolutionChain = pokemons;
-        console.log(pokemons)
       }
     });
   }

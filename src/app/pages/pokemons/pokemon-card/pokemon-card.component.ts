@@ -27,4 +27,12 @@ export class PokemonCardComponent implements OnInit {
     ).subscribe()
   }
 
+  public getPokemonImage(pokemon: any, isHome: boolean = false) {
+    if (isHome) {
+      return pokemon.sprites.other.home.front_default;
+    }
+
+    return pokemon.sprites.front_default
+  }
+
 }

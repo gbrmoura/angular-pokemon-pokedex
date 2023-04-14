@@ -10,4 +10,16 @@
     margin-bottom: 5px;
   }
 }
-  
+
+.no-form-pokemon {
+  display: flex;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+
+  .span {
+    font-size: 1rem;
+    color: gray;
+  }
+}

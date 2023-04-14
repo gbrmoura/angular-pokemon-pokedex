@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services';
 
 @Component({
@@ -6,27 +7,31 @@ import { HttpService } from 'src/app/services';
   templateUrl: './pokemon-image-form-card.component.html',
   styleUrls: ['./pokemon-image-form-card.component.scss']
 })
-export class PokemonImageFormCardComponent implements OnInit {
+export class PokemonImageFormCardComponent implements OnChanges {
 
   @Input() pokemon: any;
-  @Input() species: any;
 
-  constructor(private http: HttpService) { }
+  public form: any;
+  public algo: any;
 
-  ngOnInit(): void {
+  constructor(
+    private http: HttpService,
+    private router: Router
+  ) { }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.http.getPokemonForm(this.pokemon.name).subscribe({
+      next: (form) => {
+        this.form = form;
+      }
+    })
   }
 
-  private getPokemonVarieties(species: any): any[] {
-    // todo:
-    if (species && species.varieties) {
-      return species.varieties.map((vtr: any) => {
-
-      }).filter((vtr: any) => vtr !== null)
-    }
-
-
-    return [];
+  public getImageSourceValue(pokemon: any): string {
+    return pokemon.sprites.front_default;
   }
 
+  public goToPokemon(): void {
+    this.router.navigate([`/pokemons/${this.pokemon.name}`]);
+  }
 }
