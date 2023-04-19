@@ -22,112 +22,131 @@ export class PokemonComponent implements OnInit {
 		this.activeRoute.params.subscribe((routeParams) => {
 			this.loadPokemonData();
 		});
-
 	}
 
 	public pokemonMainData: any = null;
 	public pokemonSpecieData: any = null;
 	public pokemonFormData: any = null;
 	public pokemonEvolutionChainData: any = null;
-  public pokemonTypeChartData: any = null;
+	public pokemonTypeChartData: any = null;
 
-    // dados dos form
-    // dados das evoluções
+	// dados dos form
+	// dados das evoluções
 
-  public loadPokemonData(): void {
-    this.isLoading = true;
-    const pokemonId = this.getPokemonId();
+	public loadPokemonData(): void {
+		this.isLoading = true;
+		const pokemonId = this.getPokemonId();
 
-    this.httpService.getPokemon(pokemonId).pipe(
-        switchMap((pokemonMainData) => {
-          return zip([
-            of(pokemonMainData),
-            this.httpService.getPokemonSpecies(pokemonId),
-          ]);
-        }),
-        switchMap(([pokemonMainData, pokemonSpecieData]) => {
-          return zip([
-            of(pokemonMainData),
-            of(pokemonSpecieData),
-            this.httpService.getPokemonForm(pokemonId),
-            this.httpService.getPokemonEvolutionChain(this.httpService.getID(pokemonSpecieData.evolution_chain.url)),
-            this.getPokemonTypeChartData(pokemonMainData),
-          ])
-        }),
+		this.httpService
+			.getPokemon(pokemonId)
+			.pipe(
+				switchMap((pokemonMainData) => {
+					return zip([
+						of(pokemonMainData),
+						this.httpService.getPokemonSpecies(pokemonId),
+					]);
+				}),
+				switchMap(([pokemonMainData, pokemonSpecieData]) => {
+					return zip([
+						of(pokemonMainData),
+						of(pokemonSpecieData),
+						this.httpService.getPokemonForm(pokemonId),
+						this.httpService.getPokemonEvolutionChain(
+							this.httpService.getID(pokemonSpecieData.evolution_chain.url)
+						),
+						this.getPokemonTypeChartData(pokemonMainData),
+					]);
+				})
+			)
+			.subscribe({
+				next: ([
+					pokemonMainData,
+					pokemonSpecieData,
+					pokemonFormData,
+					pokemonEvolutionChainData,
+					pokemonTypeChartData,
+				]) => {
+					this.pokemonMainData = pokemonMainData;
+					this.pokemonSpecieData = pokemonSpecieData;
+					this.pokemonFormData = pokemonFormData;
+					this.pokemonEvolutionChainData = pokemonEvolutionChainData;
+					this.pokemonTypeChartData = pokemonTypeChartData;
 
-    ).subscribe({
-      next: ([pokemonMainData, pokemonSpecieData, pokemonFormData, pokemonEvolutionChainData, pokemonTypeChartData]) => {
-        this.pokemonMainData = pokemonMainData;
-        this.pokemonSpecieData = pokemonSpecieData;
-        this.pokemonFormData = pokemonFormData;
-        this.pokemonEvolutionChainData = pokemonEvolutionChainData;
-        this.pokemonTypeChartData = pokemonTypeChartData;
-
-        this.isLoading = false;
-      }
-    });
+					this.isLoading = false;
+				},
+			});
 	}
 
-  public getPokemonTypeChartData(pokemonData: any): Observable<any> {
-    return this.httpService.getTypes().pipe(
-      switchMap((pokemonTypesData) => {
-        return concat(
-          ...pokemonData.types.map((typeData: any) => {
+	public getPokemonTypeChartData(pokemonData: any): Observable<any> {
+		return this.httpService.getTypes().pipe(
+			switchMap((pokemonTypesData) => {
+				return concat(
+					...pokemonData.types.map((typeData: any) => {
+						return this.httpService.getPokemonTypes(typeData.type.name).pipe(
+							map((pokemonType) => {
+								const damaged: Array<PokemonTypeDamage> = [];
 
-            return this.httpService.getPokemonTypes(typeData.type.name).pipe(
-              map((pokemonType) => {
+								pokemonType.damage_relations.double_damage_from.map(
+									(doubleDamage: any) => {
+										damaged.push({ type: doubleDamage.name, damage: 2 });
+									}
+								);
 
-                const damaged: Array<PokemonTypeDamage> = []
+								pokemonType.damage_relations.half_damage_from.map(
+									(halfDamage: any) => {
+										damaged.push({ type: halfDamage.name, damage: 0.5 });
+									}
+								);
 
-                pokemonType.damage_relations.double_damage_from.map((doubleDamage: any) => {
-                  damaged.push({ type: doubleDamage.name, damage: 2 });
-                })
+								pokemonType.damage_relations.no_damage_from.map((noDamage: any) => {
+									damaged.push({ type: noDamage.name, damage: 0 });
+								});
 
-                pokemonType.damage_relations.half_damage_from.map((halfDamage: any) => {
-                  damaged.push({ type: halfDamage.name, damage: 0.5 });
-                })
+								return damaged;
+							})
+						);
+					})
+				).pipe(
+					toArray(),
+					map((damagedTypes: any) => {
+						return pokemonTypesData.results.map((result: any) => {
+							let filterDamaged = damagedTypes[0].filter(
+								(e: any) => e.type == result.name
+							);
 
-                pokemonType.damage_relations.no_damage_from.map((noDamage: any) => {
-                  damaged.push({ type: noDamage.name, damage: 0 });
-                })
+							if (damagedTypes.length >= 2) {
+								filterDamaged = [...filterDamaged, ...damagedTypes[1]].filter(
+									(e) => e.type == result.name
+								);
+							}
 
-                return damaged;
-              })
-            )
-          })
-        ).pipe(toArray(), map((damagedTypes: any) => {
-            return pokemonTypesData.results.map((result: any) => {
+							let finalDamageTakenByType =
+								filterDamaged.length <= 0
+									? 1
+									: filterDamaged.reduce((a: any, b: any) => {
+											a.damage *= b.damage;
+											return a;
+									  }).damage;
 
-              let filterDamaged = damagedTypes[0].filter((e: any) => e.type == result.name);
+							return { name: result.name, damage: finalDamageTakenByType };
+						});
+					}),
+					map((finalDamagedTypes) => {
+						const finalTypes = pokemonTypesData.results.map((e: any) => {
+							return { name: e.name, description: e.name.substr(0, 3) };
+						});
 
-              if (damagedTypes.length >= 2) {
-                filterDamaged = [...filterDamaged, ...damagedTypes[1]].filter((e) => e.type == result.name)
-              }
+						return {
+							PokemonTypesData: finalTypes,
+							PokemonTypesDamagedData: finalDamagedTypes,
+						};
+					})
+				);
+			})
+		);
+	}
 
-              let finalDamageTakenByType = filterDamaged.length <= 0 ? 1 : filterDamaged.reduce((a: any, b: any) => {
-                a.damage *= b.damage;
-                return a;
-              }).damage;
-
-              return { name: result.name, damage: finalDamageTakenByType };
-            });
-          }),
-          map((finalDamagedTypes) => {
-            const finalTypes = pokemonTypesData.results.map((e: any) => {
-              return { name: e.name, description: e.name.substr(0, 3)}
-            })
-
-            return {
-              PokemonTypesData: finalTypes,
-              PokemonTypesDamagedData: finalDamagedTypes
-            }
-          })
-        )
-      })
-    );
-  }
-
-  public getPokemonId(): string {
-    return String(this.route.snapshot.paramMap.get('pokemon')) || '';
-  }
+	public getPokemonId(): string {
+		return String(this.route.snapshot.paramMap.get('pokemon')) || '';
+	}
 }

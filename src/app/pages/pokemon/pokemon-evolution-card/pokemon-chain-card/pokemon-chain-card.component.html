@@ -1,18 +1,18 @@
 <div *ngIf="pokemons" class="pokemon-chain-card">
-  <div class="pokemon-chain-card-link" (click)="goToPokemon()">
-    <div class="image">
-      <img src="{{ getImageSourceValue(pokemons) }}" alt="">
-    </div>
-    <div class="description">
-      <span class="title">{{ pokemons.name | capitalizeAllText }}</span>
-      <div class="evolve-reason" *ngIf="pokemonEvolveReason; else basicForm">
-        <span>{{ getEvolveDescription() }}</span>
-      </div>
-      <ng-template #basicForm>
-        <div class="basic-form">
-          <span>Basic Form</span>
-        </div>
-      </ng-template>
-    </div>
-  </div>
+	<div class="pokemon-chain-card-link" (click)="goToPokemon()">
+		<div class="image">
+			<img src="{{ getImageSourceValue(pokemons) }}" alt="" />
+		</div>
+		<div class="description">
+			<span class="title">{{ pokemons.name | capitalizeAllText }}</span>
+			<div class="evolve-reason" *ngIf="pokemonEvolveReason; else basicForm">
+				<span>{{ getEvolveDescription() }}</span>
+			</div>
+			<ng-template #basicForm>
+				<div class="basic-form">
+					<span>Basic Form</span>
+				</div>
+			</ng-template>
+		</div>
+	</div>
 </div>

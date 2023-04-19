@@ -4,15 +4,8 @@ import { GlobalModule } from 'src/app/global.module';
 import { LoaderComponent } from './loader.component';
 
 @NgModule({
-  declarations: [
-    LoaderComponent,
-  ],
-  imports: [
-    CommonModule,
-    GlobalModule
-  ],
-  exports: [
-    LoaderComponent
-  ]
+	declarations: [LoaderComponent],
+	imports: [CommonModule, GlobalModule],
+	exports: [LoaderComponent],
 })
-export class LoaderModule { }
+export class LoaderModule {}

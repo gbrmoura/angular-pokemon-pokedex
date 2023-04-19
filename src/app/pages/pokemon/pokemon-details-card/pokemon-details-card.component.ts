@@ -39,7 +39,9 @@ export class PokemonDetailsCardComponent implements OnChanges {
 		this.species = this.specie.genera.find((rec: any) => rec.language.name === 'en').genus;
 		this.height = `${sliceHeight} m`;
 		this.weight = `${sliceWeight} kg`;
-		this.abilities = this.pokemon.abilities.map((rec: any) => `${rec.ability.name}${rec.is_hidden ? ' (hidden)' : ''}`).join(', ');
+		this.abilities = this.pokemon.abilities
+			.map((rec: any) => `${rec.ability.name}${rec.is_hidden ? ' (hidden)' : ''}`)
+			.join(', ');
 	}
 
 	public slice(text: string, position: number, inc: string): string {

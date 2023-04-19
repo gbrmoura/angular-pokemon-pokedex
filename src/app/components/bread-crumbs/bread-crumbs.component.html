@@ -1,17 +1,13 @@
 <ol class="breadcrumb">
-  <li *ngFor="let breadcrumb of breadcrumbs">
+	<li *ngFor="let breadcrumb of breadcrumbs">
+		<a class="title" [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
+			{{ breadcrumb.label }}
+		</a>
 
-    <a class="title" [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
-      {{ breadcrumb.label }}
-    </a>
-
-    <span *ngIf="breadcrumbs[breadcrumbs.length - 1] !== breadcrumb">
-      <mat-icon>
-        <span class="material-symbols-outlined">
-          arrow_forward_ios
-        </span>
-      </mat-icon>
-    </span>
-
-  </li>
+		<span *ngIf="breadcrumbs[breadcrumbs.length - 1] !== breadcrumb">
+			<mat-icon>
+				<span class="material-symbols-outlined"> arrow_forward_ios </span>
+			</mat-icon>
+		</span>
+	</li>
 </ol>

@@ -15,23 +15,17 @@ import { PokemonChainCardComponent } from './pokemon-evolution-card/pokemon-chai
 import { PokemonImageFormCardComponent } from './pokemon-forms-card/pokemon-image-form-card/pokemon-image-form-card.component';
 
 @NgModule({
-  declarations: [
-    PokemonComponent,
-    PokemonImageCardComponent,
-    PokemonStatisticsCardComponent,
-    PokemonEvolutionCardComponent,
-    PokemonDetailsCardComponent,
-    PokemonFormsCardComponent,
-    PokemonTypechartCardComponent,
-    PokemonChainCardComponent,
-    PokemonImageFormCardComponent,
-  ],
-  imports: [
-    CommonModule,
-    PokemonRoutingModule,
-    GlobalModule,
-    LoaderModule,
-    PipesModule
-  ]
+	declarations: [
+		PokemonComponent,
+		PokemonImageCardComponent,
+		PokemonStatisticsCardComponent,
+		PokemonEvolutionCardComponent,
+		PokemonDetailsCardComponent,
+		PokemonFormsCardComponent,
+		PokemonTypechartCardComponent,
+		PokemonChainCardComponent,
+		PokemonImageFormCardComponent,
+	],
+	imports: [CommonModule, PokemonRoutingModule, GlobalModule, LoaderModule, PipesModule],
 })
-export class PokemonModule { }
+export class PokemonModule {}
