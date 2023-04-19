@@ -8,16 +8,7 @@ import { LoaderModule } from 'src/app/components/loader/loader.module';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
-  declarations: [
-    PokemonsComponent,
-    PokemonCardComponent,
-  ],
-  imports: [
-    CommonModule,
-    PokemonsRoutingModule,
-    GlobalModule,
-    LoaderModule,
-    PipesModule
-  ]
+	declarations: [PokemonsComponent, PokemonCardComponent],
+	imports: [CommonModule, PokemonsRoutingModule, GlobalModule, LoaderModule, PipesModule],
 })
-export class PokemonsModule { }
+export class PokemonsModule {}

@@ -1,25 +1,28 @@
-<div *ngIf="pokemon">
-  <mat-card class="container">
-    <h2>Damage Taken</h2>
-    <div class="typechart-wrapper">
-      <table>
-        <tbody>
-          <tr>
-            <td class="type" *ngFor="let type of types" >
-              <div class="type-wrapper" [ngStyle]="{'background-color': poke.getPokemonTypeColor(type.name)}">
-                <span>{{ type.title | capitalizeAllText }}</span>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="value-wrapper" *ngFor="let dmg of damaged">
-              <div class="value" ngClass="{{getClassByDamage(dmg.damage)}}">
-                <span>{{ dmg.damage }}</span>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </mat-card>
+<div *ngIf="pokemonData">
+	<mat-card class="container">
+		<h2>Damage Taken</h2>
+		<div class="typechart-wrapper">
+			<table>
+				<tbody>
+					<tr>
+						<td class="type" *ngFor="let type of pokemonTypeData.PokemonTypesData">
+							<div
+								class="type-wrapper"
+								[ngStyle]="{ 'background-color': pokemonService.getPokemonTypeColor(type.name) }"
+							>
+								<span>{{ type.description | capitalizeAllText }}</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="value-wrapper" *ngFor="let dmg of pokemonTypeData.PokemonTypesDamagedData">
+							<div class="value" ngClass="{{ getClassByDamage(dmg.damage) }}">
+								<span>{{ dmg.damage }}</span>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</mat-card>
 </div>

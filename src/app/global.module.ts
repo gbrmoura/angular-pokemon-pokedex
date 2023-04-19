@@ -27,68 +27,62 @@ import { FormsModule } from '@angular/forms';
 import { CapitalizeAlTextPipe } from './pipes';
 
 @NgModule({
-  declarations: [],
-  imports: [
+	declarations: [],
+	imports: [
+		// Forms
+		FormsModule,
 
-    // Forms
-    FormsModule,
+		// Angular
+		CommonModule,
 
-    // Angular
-    CommonModule,
+		// Http
+		HttpClientModule,
 
-    // Http
-    HttpClientModule,
+		// Material
+		MatIconModule,
+		MatToolbarModule,
+		MatListModule,
+		MatSidenavModule,
+		MatButtonModule,
+		MatMenuModule,
+		MatInputModule,
+		MatFormFieldModule,
+		MatTooltipModule,
+		MatCardModule,
+		MatProgressSpinnerModule,
+		MatDialogModule,
+		MatStepperModule,
+		MatGridListModule,
+		MatSnackBarModule,
+		MatBadgeModule,
+		MatProgressBarModule,
+		MatPaginatorModule,
+	],
+	exports: [
+		// Forms
+		FormsModule,
 
-    // Material
-    MatIconModule,
-    MatToolbarModule,
-    MatListModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatTooltipModule,
-    MatCardModule,
-    MatProgressSpinnerModule,
-    MatDialogModule,
-    MatStepperModule,
-    MatGridListModule,
-    MatSnackBarModule,
-    MatBadgeModule,
-    MatProgressBarModule,
-    MatPaginatorModule,
-
-  ],
-  exports: [
-    // Forms
-    FormsModule,
-
-    // Angular Material
-    MatIconModule,
-    MatToolbarModule,
-    MatListModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatTooltipModule,
-    MatCardModule,
-    MatProgressSpinnerModule,
-    MatDialogModule,
-    MatGridListModule,
-    MatSnackBarModule,
-    MatBadgeModule,
-    MatProgressBarModule,
-    MatPaginatorModule,
-    
-  ],
-  providers: [
-    HttpService,
-    PokemonService,
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  bootstrap: [],
+		// Angular Material
+		MatIconModule,
+		MatToolbarModule,
+		MatListModule,
+		MatSidenavModule,
+		MatButtonModule,
+		MatMenuModule,
+		MatInputModule,
+		MatFormFieldModule,
+		MatTooltipModule,
+		MatCardModule,
+		MatProgressSpinnerModule,
+		MatDialogModule,
+		MatGridListModule,
+		MatSnackBarModule,
+		MatBadgeModule,
+		MatProgressBarModule,
+		MatPaginatorModule,
+	],
+	providers: [HttpService, PokemonService],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	bootstrap: [],
 })
 export class GlobalModule {}

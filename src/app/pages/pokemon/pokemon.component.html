@@ -1,10 +1,28 @@
 <app-loader [isLoading]="isLoading"></app-loader>
 
-<div *ngIf="pokemon && species" class="container">
-  <app-pokemon-image-card [pokemon]="pokemon"></app-pokemon-image-card>
-  <app-pokemon-details-card [pokemon]="pokemon" [specie]="species"></app-pokemon-details-card>
-  <app-pokemon-statistics-card [pokemon]="pokemon"></app-pokemon-statistics-card>
-  <app-pokemon-typechart-card [pokemon]="pokemon"></app-pokemon-typechart-card>
-  <app-pokemon-evolution-card [pokemon]="pokemon" [species]="species"></app-pokemon-evolution-card>
-  <app-pokemon-forms-card [pokemon]="pokemon" [species]="species"></app-pokemon-forms-card>
+<div *ngIf="!isLoading" class="container">
+	<app-pokemon-image-card [pokemon]="pokemonMainData"></app-pokemon-image-card>
+
+	<app-pokemon-details-card
+		[pokemon]="pokemonMainData"
+		[specie]="pokemonSpecieData"
+	></app-pokemon-details-card>
+
+	<app-pokemon-statistics-card [pokemon]="pokemonMainData"></app-pokemon-statistics-card>
+
+	<app-pokemon-typechart-card
+		[pokemonData]="pokemonMainData"
+		[pokemonTypeData]="pokemonTypeChartData"
+	></app-pokemon-typechart-card>
+
+	<!-- Medida provisoria para dar certo -->
+	<app-pokemon-evolution-card
+		[pokemon]="pokemonMainData"
+		[species]="pokemonSpecieData"
+	></app-pokemon-evolution-card>
+
+	<app-pokemon-forms-card
+		[pokemon]="pokemonMainData"
+		[species]="pokemonSpecieData"
+	></app-pokemon-forms-card>
 </div>

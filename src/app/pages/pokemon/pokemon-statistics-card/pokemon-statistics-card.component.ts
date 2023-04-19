@@ -10,8 +10,8 @@ export class PokemonStatisticsCardComponent implements OnChanges {
 
   @Input() pokemon: any;
 
-  stats: any[] = [];
-  total: number = 0;
+  public stats: any[] = [];
+  public total: number = 0;
 
   constructor(public poke: PokemonService) { }
 
@@ -19,8 +19,7 @@ export class PokemonStatisticsCardComponent implements OnChanges {
     this.loadPokemonStatistics();
   }
 
-
-  public loadPokemonStatistics(): void {
+  private loadPokemonStatistics(): void {
     this.total = 0;
     this.stats = this.pokemon.stats.map((stat: any) => {
       this.total += Number(stat.base_stat);
@@ -33,7 +32,7 @@ export class PokemonStatisticsCardComponent implements OnChanges {
     });
   }
 
-  getFormatStats(name: string): string {
+  private getFormatStats(name: string): string {
     switch (name) {
       case 'special-attack':
         return 'Sp. Atk';
@@ -43,7 +42,4 @@ export class PokemonStatisticsCardComponent implements OnChanges {
         return name.replace(/-/g, ' ').replace(/\w\S*/g, (w: any) => (w.replace(/^\w/, (c: any) => c.toUpperCase())));
     }
   }
-
-
-
 }
