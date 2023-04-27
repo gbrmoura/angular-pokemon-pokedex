@@ -1,27 +1,41 @@
 # AngularPokemonPokedex
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+O projeto da pokedex feito em angular veio da vontade de atualizar meu conhecimento em angular, e tambem fazer uma pagina que me auxilia-se enquanto eu jogava algum jogo relacionado a pokemon.
 
-## Development server
+No projeto temos a pagina inicial painel de controle (Dashboard), onde uma lista de pokemons e tambem uma barra de pesquisa pode ser vista. Na barra de pesquisa tem-se a possibilidade de encontrar o pokemon apenas pelo seu nome.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+A pagina de Painel de Controle pode ser vista a baixo:
+<p align="center"> <img src="assets/angular-dashboard.png" style="border-radius: 5px; width: 80%;"> </p>
 
-## Code scaffolding
+A pagina de detalhamento de pokemons, contem algumas propriedades dos pokemons e estas foram escolhidas tendo como base oque era necessario durante minhas noites de jogos com meus amigos. Na pagina em questão é possivel ver os seguintes recursos:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Card com fotos do pokemon (Normal e Shiny).
+- Card com algumas descrições chaves do pokemon.
+- Card com os estatus base e maximo que o pokemon possui.
+- Card com a tabela de tipo (Qual o tipo é efetivo).
+- Card com a linha de evolução do Pokemon.
 
-## Build
+_Observação: Na linha de evolução do pokemon alguns recuros não foram implementados como esperado._
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+A pagina de Detalhes Pokemons pode ser vista a baixo:
+<p align="center"> <img src="assets/angular-details.png" style="border-radius: 5px; width: 80%;"> </p>
 
-## Running unit tests
+## Sobre o Projeto
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+No projeto foi utilizado:
+ - [Typscript](https://www.typescriptlang.org/). Versão 4.7.2
+ - [Angular](https://angular.io/). Versão 14.1
+ - [Angular-Material](https://material.angular.io/). Versão 14.1
+ - [RxJS](https://rxjs.dev/). Versão 7.5.0
 
-## Running end-to-end tests
+## Configuração do Projeto
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Como gerar os arquivos para fazer publicação nas paginas do Github
 
-## Further help
+Você deve executar o comando a seguir para gerar os arquivos necessarios para fazer a publicação do projeto.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```shell
+ng build --output-path docs --base-href /angular-pokemon-pokedex/
+```
+
+_Observação: Você deve fazer uma copia do arquivo `index.hmtl` e renomea-lo para `404.html`._

@@ -1,52 +1,49 @@
 <div *ngIf="pokemon && evolutionChain">
-  <mat-card class="container">
-    <h2>Evolution Chain</h2>
+	<mat-card class="container">
+		<h2>Evolution Chain</h2>
 
-    <div
-      class="evolution-chain-pokemon"
-      *ngIf="isEvolutionAvailable(); else noEvolutionChain"
-    >
-      <div class="first-evolution-chain-pokemon">
-        <app-pokemon-chain-card
-          [pokemonSpeciesId]="getID(evolutionChain.chain.species.url)"
-        ></app-pokemon-chain-card>
+		<div class="evolution-chain-pokemon" *ngIf="isEvolutionAvailable(); else noEvolutionChain">
+			<div class="first-evolution-chain-pokemon">
+				<app-pokemon-chain-card
+					[pokemonSpeciesId]="getID(evolutionChain.chain.species.url)"
+				></app-pokemon-chain-card>
 
-        <div class="second-evolution-chain-pokemon">
-          <div
-            class="second-chain-wrapper"
-            *ngFor="let pokemon of evolutionChain.chain.evolves_to"
-          >
-            <div class="chain-container">
-              <img class="arrow" src="assets/right-arrow.png" />
-              <app-pokemon-chain-card
-                [pokemonSpeciesId]="getID(pokemon.species.url)"
-                [pokemonEvolveReason]="pokemon.evolution_details"
-              >
-              </app-pokemon-chain-card>
+				<div class="second-evolution-chain-pokemon">
+					<div
+						class="second-chain-wrapper"
+						*ngFor="let pokemon of evolutionChain.chain.evolves_to"
+					>
+						<div class="chain-container">
+							<img class="arrow" src="assets/right-arrow.png" />
+							<app-pokemon-chain-card
+								[pokemonSpeciesId]="getID(pokemon.species.url)"
+								[pokemonEvolveReason]="pokemon.evolution_details"
+							>
+							</app-pokemon-chain-card>
 
-              <div class="third-evolution-chain-pokemon">
-                <div
-                  *ngFor="let pokemon2 of pokemon.evolves_to"
-                  class="chain-container"
-                >
-                  <img class="arrow" src="assets/right-arrow.png" />
-                  <app-pokemon-chain-card
-                    [pokemonSpeciesId]="getID(pokemon2.species.url)"
-                    [pokemonEvolveReason]="pokemon2.evolution_details"
-                  >
-                  </app-pokemon-chain-card>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+							<div class="third-evolution-chain-pokemon">
+								<div
+									*ngFor="let pokemon2 of pokemon.evolves_to"
+									class="chain-container"
+								>
+									<img class="arrow" src="assets/right-arrow.png" />
+									<app-pokemon-chain-card
+										[pokemonSpeciesId]="getID(pokemon2.species.url)"
+										[pokemonEvolveReason]="pokemon2.evolution_details"
+									>
+									</app-pokemon-chain-card>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <ng-template #noEvolutionChain>
-      <div class="no-evolution-chain-pokemon">
-        <span>This Pokémon does not evolve</span>
-      </div>
-    </ng-template>
-  </mat-card>
+		<ng-template #noEvolutionChain>
+			<div class="no-evolution-chain-pokemon">
+				<span>This Pokémon does not evolve</span>
+			</div>
+		</ng-template>
+	</mat-card>
 </div>

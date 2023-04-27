@@ -1,17 +1,15 @@
 <div *ngIf="pokemon">
-  <mat-card class="container">
-    <h2>Forms</h2>
-    <div *ngIf="varieties.length; else noForm">
-      <div *ngFor="let item of varieties">
-        <app-pokemon-image-form-card
-          [pokemon]="item"
-        ></app-pokemon-image-form-card>
-      </div>
-    </div>
-    <ng-template #noForm>
-      <div class="no-form-pokemon">
-        <span>This Pokémon does not have others form's</span>
-      </div>
-    </ng-template>
-  </mat-card>
+	<mat-card class="container">
+		<h2>Forms</h2>
+		<div *ngIf="varieties.length; else noForm">
+			<div *ngFor="let item of varieties">
+				<app-pokemon-image-form-card [pokemon]="item"></app-pokemon-image-form-card>
+			</div>
+		</div>
+		<ng-template #noForm>
+			<div class="no-form-pokemon">
+				<span>This Pokémon does not have others form's</span>
+			</div>
+		</ng-template>
+	</mat-card>
 </div>

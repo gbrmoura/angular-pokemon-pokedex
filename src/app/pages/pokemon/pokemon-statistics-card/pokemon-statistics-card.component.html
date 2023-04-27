@@ -1,33 +1,38 @@
 <div *ngIf="pokemon">
-  <mat-card class="statistics-container"> 
-    
-    <h2>Base Stats</h2>
-    
-    <!-- list -->
-    <div>
-      <table class="stats-table">
-        <body>
-          <tr *ngFor="let stat of stats" class="stats-table-row">
-            <td class="name">{{stat.name}}:</td>
-            <td class="base-stats"><span>{{stat.base_stats}}</span></td>
-            <td class="bar">
-              <div class="statbar">
-                <div class="data" [ngStyle]="{'width': 'calc(100% * '+stat.base_stats+'/255)'}"></div>
-              </div>
-            </td>
-            <td class="min-max">{{stat.min}}</td>
-            <td class="min-max">{{stat.max}}</td>
-          </tr>
-          <tr class="stats-table-row">
-            <td class="name">Total:</td>
-            <td class="base-stats">{{total}}</td>
-            <td class="bar"></td>
-            <td class="footer-stats">Min</td>
-            <td class="footer-stats">Max</td>
-          </tr>
-        </body>
-      </table>
-    </div>
+	<mat-card class="statistics-container">
+		<h2>Base Stats</h2>
 
-  </mat-card>
+		<!-- list -->
+		<div>
+			<table class="stats-table">
+				<body>
+					<tr *ngFor="let stat of stats" class="stats-table-row">
+						<td class="name">{{ stat.name }}:</td>
+						<td class="base-stats"
+							><span>{{ stat.base_stats }}</span></td
+						>
+						<td class="bar">
+							<div class="statbar">
+								<div
+									class="data"
+									[ngStyle]="{
+										width: 'calc(100% * ' + stat.base_stats + '/255)'
+									}"
+								></div>
+							</div>
+						</td>
+						<td class="min-max">{{ stat.min }}</td>
+						<td class="min-max">{{ stat.max }}</td>
+					</tr>
+					<tr class="stats-table-row">
+						<td class="name">Total:</td>
+						<td class="base-stats">{{ total }}</td>
+						<td class="bar"></td>
+						<td class="footer-stats">Min</td>
+						<td class="footer-stats">Max</td>
+					</tr>
+				</body>
+			</table>
+		</div>
+	</mat-card>
 </div>

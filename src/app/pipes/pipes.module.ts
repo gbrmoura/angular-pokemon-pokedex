@@ -4,15 +4,8 @@ import { GlobalModule } from 'src/app/global.module';
 import { CapitalizeAlTextPipe } from 'src/app/pipes';
 
 @NgModule({
-  declarations: [
-    CapitalizeAlTextPipe
-  ],
-  imports: [
-    CommonModule,
-    GlobalModule,
-  ], 
-  exports: [
-    CapitalizeAlTextPipe
-  ]
+	declarations: [CapitalizeAlTextPipe],
+	imports: [CommonModule, GlobalModule],
+	exports: [CapitalizeAlTextPipe],
 })
-export class PipesModule { }
+export class PipesModule {}

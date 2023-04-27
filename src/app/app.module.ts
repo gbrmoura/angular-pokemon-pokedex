@@ -9,18 +9,10 @@ import { GlobalModule } from './global.module';
 import { CapitalizeAlTextPipe } from './pipes';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BreadCrumbsComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    GlobalModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	declarations: [AppComponent, BreadCrumbsComponent],
+	imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, GlobalModule],
+	providers: [],
+	bootstrap: [AppComponent],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}

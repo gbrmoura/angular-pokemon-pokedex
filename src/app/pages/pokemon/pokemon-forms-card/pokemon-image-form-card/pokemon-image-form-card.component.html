@@ -1,9 +1,9 @@
 <div *ngIf="pokemon && form" class="pokemon-image-form" (click)="goToPokemon()">
-  <div class="image">
-    <img [src]="getImageSourceValue(form)" />
-  </div>
-  <div class="description">
-    <span class="title">{{ pokemon.name | capitalizeAllText }}</span>
-    <span class="sub-title"> not implemented yet </span>
-  </div>
+	<div class="image">
+		<img [src]="getImageSourceValue(form)" />
+	</div>
+	<div class="description">
+		<span class="title">{{ pokemon.name | capitalizeAllText }}</span>
+		<span class="sub-title"> not implemented yet </span>
+	</div>
 </div>
